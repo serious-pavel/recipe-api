@@ -15,12 +15,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Entry point for the management command"""
         self.stdout.write('Waiting for database...')
-        db_conn = None
 
-        while not db_conn:
+        while True:
             try:
-                db_conn = connections['default']
-                db_conn.cursor()
+                connections['default'].cursor()
+                break
             except (OperationalError, Psycopg2Error):
                 self.stdout.write('DB is unavailable. Waiting for 1 second...')
                 time.sleep(1)
