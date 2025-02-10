@@ -23,3 +23,8 @@ WARNING! This will remove:
   - all build cache
 
 docker ps
+
+
+docker volume ls
+[docker-compose down]
+docker volume rm recipe-api_dev-db-data
