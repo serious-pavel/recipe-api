@@ -85,3 +85,5 @@ class PrivateRecipeApiTests(TestCase):
         serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
+        # extra check the amount of recipes available for the current user
+        self.assertEqual(len(res.data), 1)
