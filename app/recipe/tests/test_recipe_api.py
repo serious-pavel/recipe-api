@@ -15,6 +15,9 @@ from app.core.models import Recipe
 from app.recipe.serializers import RecipeSerializer
 
 
+RECIPES_URL = reverse('recipe:list')
+
+
 def create_recipe(user, **params):
     """Create and return a sample recipe"""
     defaults = {
@@ -28,3 +31,41 @@ def create_recipe(user, **params):
 
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
+
+
+class PublicRecipeApiTests(TestCase):
+    """Test the publicly available recipe API"""
+
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_aut_required(self):
+        """Test that auth is required"""
+        res = self.client.get(RECIPES_URL)
+
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class PrivateRecipeApiTests(TestCase):
+    """Test the authorized recipe API"""
+
+    def setUp(self):
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(
+            'user@example.com',
+            'testpass123',
+        )
+        self.client.force_authenticate(self.user)
+
+    def test_retrieve_recipes(self):
+        """Test retrieving a list of recipes"""
+        create_recipe(self.user)
+        create_recipe(self.user)
+
+        res = self.client.get(RECIPES_URL)
+
+        # return recipes in reverse order (from the last saved one)
+        recipes = Recipe.objects.all().order_by('-id')
+        serializer = RecipeSerializer(recipes, many=True)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, serializer.data)
