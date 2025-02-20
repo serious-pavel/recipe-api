@@ -11,8 +11,8 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from app.core.models import Recipe
-from app.recipe.serializers import RecipeSerializer
+from core.models import Recipe
+from recipe.serializers import RecipeSerializer
 
 
 RECIPES_URL = reverse('recipe:list')
