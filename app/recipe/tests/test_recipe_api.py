@@ -3,7 +3,6 @@ Tests for recipe api
 """
 
 from decimal import Decimal
-from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -156,7 +155,7 @@ class PrivateRecipeApiTests(TestCase):
 
         payload = {
             'title': 'New recipe title',
-            'link' : 'https://example.com/new-recipe.pdf',
+            'link': 'https://example.com/new-recipe.pdf',
             'description': 'New recipe description',
             'time_minutes': 10,
             'price': Decimal('2.50'),
@@ -183,7 +182,7 @@ class PrivateRecipeApiTests(TestCase):
             'user': new_user.id,
         }
         url = detail_url(recipe.id)
-        res = self.client.patch(url, payload)
+        self.client.patch(url, payload)
 
         recipe.refresh_from_db()
         self.assertEqual(recipe.user, self.user)
