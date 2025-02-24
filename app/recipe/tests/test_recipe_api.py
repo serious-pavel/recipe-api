@@ -38,6 +38,11 @@ def create_recipe(user, **params):
     return recipe
 
 
+def create_user(**params):
+    """Create and return a new user"""
+    return get_user_model().objects.create_user(**params)
+
+
 class PublicRecipeApiTests(TestCase):
     """Test the publicly available recipe API"""
 
@@ -117,3 +122,5 @@ class PrivateRecipeApiTests(TestCase):
         for k, v in payload.items():
             self.assertEqual(getattr(recipe, k), v)
         self.assertEqual(recipe.user, self.user)
+
+
