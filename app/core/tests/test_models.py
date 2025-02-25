@@ -8,6 +8,11 @@ from decimal import Decimal
 from .. import models  # the same as app.core
 
 
+def create_user(email='user@example.com', password='testpass123'):
+    """Create a test user"""
+    return get_user_model().objects.create_user(email, password)
+
+
 class ModelTests(TestCase):
     """Tests for models"""
 
