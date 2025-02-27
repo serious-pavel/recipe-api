@@ -48,7 +48,7 @@ class TagViewSet(mixins.DestroyModelMixin,
 
 
 class IngredientViewSet(mixins.ListModelMixin,
-                        viewsets.ModelViewSet):
+                        viewsets.GenericViewSet):
     """ViewSet for viewing and editing ingredients"""
     serializer_class = serializers.IngredientSerializer
     queryset = Ingredient.objects.all()
