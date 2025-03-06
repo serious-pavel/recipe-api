@@ -25,6 +25,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
+    def _params_to_ints(self, qs):
+        """Convert a list of string to integers"""
+        return [int(str_id) for str_id in qs.split(',')]
+
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
         return self.queryset.filter(user=self.request.user).order_by('-id')
