@@ -37,3 +37,7 @@ open -a Docker
 
 cd proxy
 docker build .
+cd ..
+
+
+cat .env.sample > .env
