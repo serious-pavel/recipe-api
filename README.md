@@ -32,3 +32,8 @@ docker volume rm recipe-api_dev-db-data
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
 
 open -a Docker
+
+
+
+cd proxy
+docker build .
