@@ -3,7 +3,6 @@ LABEL authors="serious-pavel"
 LABEL maintainer="serious-pavel"
 
 ENV PYTHONUNBUFFERED=1
-#ENTRYPOINT ["top", "-b"]
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
@@ -32,7 +31,7 @@ RUN python -m venv /py && \
     mkdir -p /vol/web/static && \
     chown -R django-user:django-user /vol && \
     chmod -R 755 /vol && \
-    chmod -R =x /scripts
+    chmod -R +x /scripts
 
 ENV PATH="/scripts:/py/bin:$PATH"
 
