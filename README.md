@@ -41,3 +41,7 @@ cd ..
 
 
 cat .env.sample > .env
+
+docker-compose -f docker-compose-deploy.yml down
+docker-compose -f docker-compose-deploy.yml up
+docker-compose -f docker-compose-deploy.yml build
