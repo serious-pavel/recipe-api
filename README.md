@@ -48,3 +48,5 @@ docker-compose -f docker-compose-deploy.yml build
 
 restart service without its dependent services
 docker-compose -f docker-compose-deploy.yml up --no-deps -a app
+
+https://github.com/LondonAppDeveloper/build-a-backend-rest-api-with-python-django-advanced-resources/blob/main/deployment.md#install-and-configure-depdencies
