@@ -10,7 +10,7 @@ Follow these steps to copy and run the **Recipe API** project on your local deve
 ### Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/recipe-api.git
+git clone https://github.com/serious-pavel/recipe-api.git
 cd recipe-api
 ```
 ### Set Up Environment Variables
@@ -29,8 +29,8 @@ docker-compose run --rm app sh -c "python manage.py migrate"
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
 ```
 ### Access the Application
-API Base URL: http://localhost:8000/api/
-Admin Panel: http://localhost:8000/admin/
+API Base URL: http://127.0.0.1:8000/api/
+Admin Panel: http://127.0.0.1:8000/admin/
 ### Running Tests & Code Checks
 ```sh
 docker-compose run --rm app sh -c "python manage.py test"
