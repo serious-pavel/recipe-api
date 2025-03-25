@@ -48,6 +48,8 @@ docker-compose down --volumes --remove-orphans
 ```sh
 docker-compose build
 docker-compose up -d
+#up only db service
+docker-compose up db
 docker-compose down
 docker-compose -f docker-compose-deploy.yml build
 docker-compose -f docker-compose-deploy.yml up -d
